@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<style>
+table.cls{
+border-spacing:1px;
+background:white;
+padding:10px;
+}
+table.cls tr th{
+background:rgb(62, 135, 96);
+padding:10px;
+}
+table.cls tr td{
+background:rgb(107, 190, 146);
+padding:10px;
+}
+
+</style>
+<div class="maincontent" style="display: flex;justify-content:center;width:100%;">
+<table class="cls" style="display: block;">
+<tr>
+<th>Resource Type</th>
+<th>Resource Title</th>
+<th>Author</th>
+<th>Algorithms</th>
+<th>Technique Used</th>
+<th>Technique Description</th>
+<th>Averge Rating</th>
+<th>Rate</th>
+</tr>
+{% for d in det %}
+<tr>
+<td>{{d.algs__resourceType}}</td>
+<td>{{d.algs__resourceTitle}}</td>
+<td>{{d.algs__author}}</td>
+<td>{{d.algs__algorithmUsed}}</td>
+<td>{{d.algs__techniqueUsed}}</td>
+<td>{{d.algs__techniqueDescription}}</td>
+{% if d.dcount == 0.0 %}
+<td>Not Rated</td>
+{% else %}
+<td>{{d.dcount}}</td>
+{% endif %}
+<td><a href="{% url 'rate_page' d.algs__id %}">Rate Algo</a></td>
+{% endfor %}
+</table>
+
+</div>
+
+{% endblock %}

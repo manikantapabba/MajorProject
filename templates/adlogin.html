@@ -1,0 +1,47 @@
+{% extends 'loginbase.html' %}
+{% load static %}
+
+{% block loginblock %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
+    <style>
+      .fixed-input {
+         width: 185px;
+         height: 35px;
+         border-radius: 3px;
+         border:1px solid white;
+     }
+    </style>
+</head>
+<form method="post" autocomplete="off" action="">
+{% csrf_token %}
+<table class="logintbl" >
+<tr>
+   <td>
+      <table style="margin-top:10px">
+         <tr>
+            <td  align="center"><input class="fixed-input" type="email" name="email" placeholder="Email" ></td>
+         </tr>
+         <tr>
+            <td  align="center"><input class="fixed-input" type="password" name="password" placeholder="Password" ></td>
+         </tr>
+         <tr>
+            <td  align="center"><input type="submit" value="submit" class="subbtn" /></td>
+         </tr>
+         <tr>
+            <td  align="center"><a href="signup">Register Here !!!</a></td>
+         </tr>
+         <tr>
+            <td>
+            {% for message in messages %}
+						<p><b style="color: red;">*</b><b>{{message}}</b></p>
+				{% endfor %}
+            </td>
+         </tr>
+      </table>
+   </td>
+   <td colspan="2" align="center"><img src="{% static 'images/user.png' %}"/><br/><label>Authority Login</label></td>
+</tr>
+</table>
+</form>
+{% endblock %}

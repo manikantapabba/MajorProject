@@ -1,0 +1,92 @@
+{% load static%}
+
+<style>
+body{
+background:#374954;
+}
+.regfor{
+top:2%;
+background:rgba(94, 142, 137,0.8);
+padding:15px;
+position:absolute;
+bottom:19%;
+border:1px solid green;
+border-radius:5%;
+left:38%;
+width:24%;
+}
+table tr {
+height:40px;
+}
+table{
+width: 100%;
+}
+.common{
+background:none;
+border:1px solid white;
+text-align:center;
+width:100%;
+border-radius:2px;
+}
+input::placeholder{
+    text-align: center;
+    color:white;
+}
+input{
+height:30px;
+background:none;
+border:1px solid white;
+border-radius: 2px;
+width: 360px;
+}
+input[type=submit]{
+width:100px;
+background:none;
+border:1px solid white;
+color:white;
+text-transform:uppercase;
+border-radius:5px;
+}
+input[type=submit]:hover{
+background:white;
+color:rgb(94, 142, 137);
+font-weight: bold;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0 25px;
+  }
+table.usrtbl{
+margin-top:46%;
+}
+
+</style>
+<img src="{% static 'images/registration1.jpg' %}" style="width:35%;height:70%;margin-top:60px;">
+<div class="regfor">
+<form method="post" autocomplete="off" action="signup">
+{% csrf_token %}
+<table class="utbl" style="height:300px;">
+<tr>
+<td style="text-align:center;margin-top:20px"><img src="{% static 'images/newuser.png' %}"></td>
+</tr>
+<tr>
+    <td><input type="text" name="username" placeholder="User Name"></td>
+</tr>
+<tr>
+    <td><input type="email" name="email" placeholder="Email"></td>
+</tr>
+<tr>
+    <td><input type="password" name="password1" placeholder="Password"></td>
+</tr>
+<tr>
+    <td><input type="password" name="password2" placeholder="Confirm password"></td>
+</tr>
+<tr>
+<td align="center"><input type="submit" value="submit" /></td>
+</tr>
+</table>
+</form>
+</div>
+<img src="{% static 'images/registration2.png' %}" style="position:fixed;width:30%;top:35%;left:67%;">
+<img src="{% static 'images/registration3.gif' %}" style="position:fixed;width:30%;top:10%;left:67%;">
+<div style="position:absolute;bottom:1px;width:99%;background:rgba(94, 142, 137,0.8);border-bottom:1px solid green;border-top:1px solid green;"></div>

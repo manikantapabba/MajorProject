@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'nav/css/style.css' %}"> 
+  
+  <link rel="stylesheet" href="{% static 'css/loginbase.css' %}"> 
+  
+</head>
+
+<body>
+
+<h1>RateAlgo</h1>
+<img src="{% static 'images/loginani.gif' %}" style="width:480px;margin-right:800px;margin-top:200px;">
+<div class="mainlogin">
+        {% block loginblock %}  
+        {% endblock %}    
+</div>
+<div class="borbotm"><marquee dir="scroll">Review of Use of AI Techniques in Serious Games</marquee></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+<style>
+table.hometbl{
+    border-collapse:separate;
+    border-spacing: 1px;
+}
+table.hometbl tr th{
+background:black;
+padding:10px;
+}
+table.hometbl tr td{
+background:white;
+padding:10px;
+color:black;
+}
+</style>
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<div class="maincontent">
+<table class="hometbl" style="margin-left: 300px;">
+<tr>
+<th>Resource Type</th>
+<th>Resource Title</th>
+<th>Author</th>
+<th>Algorithm Used</th>
+<th>Technique Used</th>
+<th>Technique Description</th>
+</tr>
+{% for d in det %}
+<tr>
+<td>{{d.resourceType}}</td>
+<td>{{d.resourceTitle}}</td>
+<td>{{d.author}}</td>
+<td>{{d.algorithmUsed}}</td>
+<td>{{d.techniqueUsed}}</td>
+<td>{{d.techniqueDescription}}</td>
+{% endfor %}
+</tr>
+</table>
+</div>
+
+{% endblock %}

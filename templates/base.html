@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
+      <style>
+      body{
+      background:rgb(94,156,156);
+      }
+      </style>
+</head>
+
+<body>
+<img align="left" src="{% static 'images/algorithm2.png' %}" style="width:10%;display:inline-block">
+  <!-- not responsive yet -->
+  
+<nav style="margin-left:0px;display:inline-block;margin-right:250px;">
+  <b style="display:inline-block;margin-right: 50px;">Welcome {{user.username}} :)</b>
+  <ul id="main">
+    
+    <li>
+        <a href="home">Home</a>
+    </li>
+    <li>
+        <a href="">Upload</a>
+        <ul class="drop">
+            <div>
+                <li><a href="uploads">Upload New File</a></li>
+                <li><a href="myuploads">My Uploads</a></li>
+                <li><a href="uploadstatus">Upload Request Status</a></li>
+            </div>
+        </ul>
+      </li>
+    <li>
+        <a href="">Rating Details</a>
+        <ul class="drop">
+            <div>
+                <li><a href="ratings">Ratings</a></li>
+                <li><a href="yourratings">Your Ratings</a></li>
+            </div>
+        </ul>
+    </li>
+    <li>
+      <a href="{% url 'graphs_page' 'bar' %}">Graphs</a>
+      <!-- <ul class="drop">
+        <div>
+            <li><a href="{% url 'graphs_page' 'bar' %}">Bar Chart</a></li>
+            <li><a href="{% url 'graphs_page' 'pie' %}">Pie Chart</a></li>
+            <li><a href="{% url 'graphs_page' 'spline' %}">Spline Chart</a></li>
+            <li><a href="{% url 'graphs_page' 'line' %}">Line Chart</a></li>
+            <li><a href="{% url 'graphs_page' 'column' %}">Column Chart</a></li>
+        </div>
+      </ul>    -->
+    </li>
+    <li>
+        <a href="logout">Logout</a>
+    </li>
+
+  </ul>
+</nav>
+{% block mainblock %}  
+{% endblock %}
+  
+</body>
+</html>

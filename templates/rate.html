@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+
+<style>
+.rating {
+    float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t 
+   follow these rules. Every browser that supports :checked also supports :not(), so
+   it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0 .1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+    text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+    text-shadow:1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+    text-shadow:1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > label:active {
+    position:relative;
+    top:2px;
+    left:2px;
+}
+table tr{
+height:50px;
+text-align:center;
+}
+table tr td{
+padding:10px;
+}
+fieldset.mainfi{
+float:left;
+position:fixed;
+left:30%;
+top:15%;
+padding-left:150px;
+padding-right:150px;
+}
+input[type=text]{
+margin-left:-20%;
+width:150%;
+height:50px;
+padding-left:10px;
+}
+input[type=submit]{
+padding-top:10px;
+padding-bottom:10px;
+padding-left:40px;
+padding-right:40px;
+text-transform:uppercase;
+font-weight:bold;
+background:none;
+border:2px solid white;
+color:white;
+}
+</style>
+<fieldset class="mainfi">
+<legend>&nbsp;&nbsp;&nbsp;RATING FORM&nbsp;&nbsp;&nbsp;</legend>
+<form method="post" onsubmit="sub()">
+{% csrf_token %}
+<table>
+<tr>
+<td>{{det.resourceType}}</td>
+</tr>
+<tr>
+<td>{{det.resourceTitle}}</td>
+</tr>
+<tr>
+<td>{{det.author}}</td>
+</tr>
+<tr>
+<td>{{det.algorithmUsed}}</td>
+</tr>
+<tr>
+<td>{{det.algorithmUsed}}</td>
+</tr>
+<tr>
+<td>{{det.techniqueUsed}}</td>
+</tr>
+<tr>
+<td>{{det.techniqueDescription}}</td>
+</tr>
+<tr>
+<td>
+<fieldset class="rating">
+    <legend>Please rate:</legend>
+    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Rocks!">5 stars</label>
+    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Sucks big time">1 star</label>
+    <input type="hidden" name="ratings" id="rats">
+</fieldset>
+</td>
+</tr>
+<tr>
+<td><input type="text" name="review" placeholder="Please Give Your Valuable Suggestions"></td>
+</tr>
+<tr>
+<td>
+<input type="submit" name="submit" value="submit">
+</td>
+</tr>
+</table>
+</form>
+</fieldset>
+<script>
+function sub(){
+if (document.getElementById('star5').checked) {
+  var rate_value = document.getElementById('star5').value;
+  document.getElementById('rats').value=rate_value;
+}
+else if (document.getElementById('star4').checked) {
+  rate_value = document.getElementById('star4').value;
+  document.getElementById('rats').value=rate_value;
+}
+else if (document.getElementById('star3').checked) {
+  rate_value = document.getElementById('star3').value;
+  document.getElementById('rats').value=rate_value;
+}
+else if (document.getElementById('star2').checked) {
+  rate_value = document.getElementById('star2').value;
+  document.getElementById('rats').value=rate_value;
+}
+else if (document.getElementById('star1').checked) {
+  rate_value = document.getElementById('star1').value;
+  document.getElementById('rats').value=rate_value;
+}
+}
+</script>
+
+{% endblock %}

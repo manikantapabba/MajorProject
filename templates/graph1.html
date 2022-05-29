@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+<style>
+#chartType{
+margin-bottom:50px;
+}
+</style>
+<script>
+window.onload = function () {
+	
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	
+	title:{
+		text:"Ratings For Algorithms respectively"
+	},
+	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Ratings"
+	},
+	data: [{
+		type: "bar",
+		name: "companies",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: [
+        {% for d in det %}
+            { y: {{d.dcount}},label: '{{d.algs__algorithmUsed}}' },
+        {% endfor %}/*
+			{ y: 3, label: "Sweden" },
+			{ y: 7, label: "Taiwan" },
+			{ y: 5, label: "Russia" },
+			{ y: 9, label: "Spain" },
+			{ y: 7, label: "Brazil" },
+			{ y: 7, label: "India" },
+			{ y: 9, label: "Italy" },
+			{ y: 8, label: "Australia" },
+			{ y: 11, label: "Canada" },
+			{ y: 15, label: "South Korea" },
+			{ y: 12, label: "Netherlands" },
+			{ y: 15, label: "Switzerland" },
+			{ y: 25, label: "Britain" },
+			{ y: 28, label: "Germany" },
+			{ y: 29, label: "France" },
+			{ y: 52, label: "Japan" },
+			{ y: 103, label: "China" },
+			{ y: 134, label: "US" }*/
+		]
+	}]
+});
+chart.render();
+
+}
+function check(elem) {
+    switch(elem.value){
+        case 'bar':
+            window.location.href="{% url 'graphs_page' 'bar' %}";
+            break;
+        case 'pie':
+            window.location.href="{% url 'graphs_page' 'pie' %}";
+            break;
+        case 'spline':
+            window.location.href="{% url 'graphs_page' 'spline' %}";
+            break;
+        case 'line':
+            window.location.href="{% url 'graphs_page' 'line' %}";
+            break;
+        case 'column':
+            window.location.href="{% url 'graphs_page' 'column' %}";
+            break;
+    }
+}
+</script>
+<select id="chartType" style="margin-left:500px;"  onChange="check(this);">
+    <option value="bar" selected>Bar</option>
+    <option value="pie">Pie</option>
+    <option value="spline">Spline</option>
+    <option value="line">Line</option>
+    <option value="column">Column</option>
+</select>
+<div id="chartContainer" style="height: 630px; max-width: 1220px; margin: 0px auto;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endblock %}

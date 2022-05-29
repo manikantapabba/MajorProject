@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+<style>
+table.uploadFormStyle{
+    padding:20px;
+    background:rgb(244,244,244);
+    position:fixed;
+    top: 40%;
+    left: 43%;
+    border-spacing:0px;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+}
+table.innerForm{
+    padding-top:30px;
+    padding-bottom:70px;
+    padding-left:70px;
+    padding-right:70px;
+}
+table.uploadFormStyle tr{
+height:50px;
+}
+table.uploadFormStyle tr th:first-child, table.uploadFormStyle tr td.lasttb{
+//background:red;
+background:rgb(107, 190, 146);
+}
+.lasttb {
+border-left:2px solid rgb(62, 135, 96);
+border-right:2px solid rgb(62, 135, 96);
+border-bottom:2px solid rgb(62, 135, 96);
+border-top:2px solid rgb(62, 135, 96);
+}
+.tblhld {
+border-left:2px solid rgb(62, 135, 96);
+border-right:2px solid rgb(62, 135, 96);
+}
+.updTitle{
+border-left:2px solid rgb(62, 135, 96);
+border-right:2px solid rgb(62, 135, 96);
+border-bottom:2px solid rgb(62, 135, 96);
+border-top:2px solid rgb(62, 135, 96);
+}
+table.uploadFormStyle tr th{
+text-align:left;
+}
+table.uploadFormStyle tr th label{
+margin-left:50px;
+text-transform:uppercase;
+color:white;
+}
+label{
+color:rgb(62, 135, 96);
+}
+input[type=submit]{
+padding-left:45px;
+padding-right:45px;
+padding-top:5px;
+padding-bottom:5px;
+background:white;
+border:1px solid white;
+border-radius:5px;
+color:rgb(62, 135, 96);
+text-transform:uppercase;
+font-weight:bold;
+}
+input[type=text],input[type=file]
+{
+height:35px;
+color:rgb(62, 135, 96);
+width:300px;
+padding:12px;
+}
+select{
+height:35px;
+color:rgb(62, 135, 96);
+width:300px;
+}
+</style>
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+<div class="maincontent">
+<form method="post" enctype='multipart/form-data' autocomplete=off>
+{% csrf_token %}
+<table class="uploadFormStyle">
+    <tr>
+        <th class="updTitle"><label>Upload Resource Details</label><th>
+    </tr>
+    <tr>
+    <td class="tblhld">
+        <table class="innerForm">
+            <tr>
+                <td><label>Resource Type</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.resourceType}}</td>
+            </tr>
+            <tr>
+                <td><label>Resource Title</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.resourceTitle}}</td>
+            </tr>
+            <tr>
+                <td><label>Author Name</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.author}}</td>
+            </tr>
+            <tr>
+                <td><label>Algorithm</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.algorithmUsed}}</td>
+            </tr>
+            <tr>
+                <td><label>Technique Used</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.techniqueUsed}}</td>
+            </tr>
+            <tr>
+                <td><label>Technique Description</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.techniqueDescription}}</td>
+            </tr>
+            <tr>
+                <td><label>Resource File</label></td>
+                <td><label style="padding-left:10px;padding-right:10px;">:</label></td>
+                <td>{{form.document}}</td>
+            </tr>
+        </table>
+    </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="lasttb"><input type="submit" name="submit" value="submit"></td>
+    </tr>
+</table>
+</form>
+</div>
+
+{% endblock %}

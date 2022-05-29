@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Authority</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  
+      <link rel="stylesheet" href="{% static 'nav/css/style.css' %}">
+
+  
+</head>
+
+<body>
+  <!-- not responsive yet -->
+<nav>
+  <ul id="main">
+    <li><a href="adhome">Home</a></li>
+    <li><a href="">Upload</a>
+    <ul class="drop">
+    <div>
+        <li><a href="aduploaddata">Upload Data</a></li>
+        <li><a href="developerrequests">Developer Request</a></li>
+    </div>
+    </ul>
+    </li>
+    <li><a href="adratings">ratingDetails</a></li>
+    <li><a href="adlogout">Logout</a></li>
+    <div id="marker"></div>
+  </ul>
+</nav>
+
+{% block mainblock %}  
+{% endblock %}
+  
+</body>
+</html>

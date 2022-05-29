@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+<style>
+table{
+margin-left:17%;
+border-spacing:1px;
+}
+table tr th{
+background:black;
+padding:20px;
+}
+table tr td{
+background:white;
+padding:20px;
+color:black;
+}
+</style>
+<table>
+<tr>
+<th>Title (type)</th>
+<th>Algorithm Name</th>
+<th>Technique Used</th>
+<th>Rating</th>
+<th>Review</th>
+<th>Average Rating</th>
+<tr>
+{% for rating in ratings %}
+<tr>
+<td>{{rating.algs__resourceTitle}}&nbsp;&nbsp;(&nbsp;&nbsp;{{rating.algs__resourceType}}&nbsp;&nbsp;)&nbsp;&nbsp;</td>
+<td>{{rating.algs__algorithmUsed}}</td>
+<td>{{rating.algs__techniqueUsed}}</td>
+<td>{{rating.ratings}}</td>
+<td>{{rating.review}}</td>
+<td>{{rating.dcount}}</td>
+{% endfor %}
+</tr>
+</table>
+{% endblock %}

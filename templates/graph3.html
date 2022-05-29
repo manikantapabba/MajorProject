@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block mainblock %}
+{% load static %}
+<style>
+#chartType{
+margin-bottom:50px;
+}
+</style>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,  
+	title:{
+		text: "Rating Analysis of Algorithms"
+	},
+	axisY: {
+		title: "Ratings",
+	},
+	data: [{
+		type: "splineArea",
+		color: "rgba(54,158,173,.7)",
+		markerSize: 5,
+		xValueFormatString: "YYYY",
+		yValueFormatString: "$#,##0.##",
+		dataPoints: [
+        {% for d in det %}
+            { y: {{d.dcount}},label: '{{d.algs__algorithmUsed}}' },
+        {% endfor %}
+	]
+	}]
+	});
+chart.render();
+
+}
+function check(elem) {
+    switch(elem.value){
+        case 'bar':
+            window.location.href="{% url 'graphs_page' 'bar' %}";
+            break;
+        case 'pie':
+            window.location.href="{% url 'graphs_page' 'pie' %}";
+            break;
+        case 'spline':
+            window.location.href="{% url 'graphs_page' 'spline' %}";
+            break;
+        case 'line':
+            window.location.href="{% url 'graphs_page' 'line' %}";
+            break;
+        case 'column':
+            window.location.href="{% url 'graphs_page' 'column' %}";
+            break;
+    }
+}
+</script>
+<select id="chartType" style="margin-left:500px;"  onChange="check(this);">
+    <option value="bar">Bar</option>
+    <option value="pie">Pie</option>
+    <option value="spline" selected>Spline</option>
+    <option value="line">Line</option>
+    <option value="column">Column</option>
+</select>
+<div id="chartContainer" style="height: 630px; max-width: 1220px; margin: 0px auto;"></div>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+{% endblock %}
